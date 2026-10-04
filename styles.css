@@ -1179,7 +1179,7 @@ footer p {
     width: 100%;
     min-width: 0;
     box-sizing: border-box;
-    padding: 30px 20px;
+    padding: 30px 15px;
 }
 
 .info-card p{
@@ -1304,9 +1304,11 @@ footer p {
 }
 
 .info-card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     border: 1px solid rgba(201, 168, 106, 0.25);
-
-    padding: 35px 25px;
+    padding: 30px 15px;
 
     text-align: center;
 
@@ -1379,4 +1381,42 @@ footer p {
     color: var(--navy);
 
     transform: translateY(-2px);
+}
+
+/* =====================================================
+   MOBILE RESTAURANT INFO FIX
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .restaurant-info {
+        padding: 70px 20px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .info-card {
+        width: 100%;
+        min-width: 0;
+        padding: 30px 15px;
+        box-sizing: border-box;
+    }
+
+    .info-card h3 {
+        font-size: 25px;
+    }
+
+    .info-card p {
+        width: 100%;
+        overflow-wrap: break-word;
+    }
+
+    .info-link {
+        display: inline-block;
+        max-width: 100%;
+    }
 }
