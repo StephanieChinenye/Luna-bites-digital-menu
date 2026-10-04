@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Luna Bites | Lounge & Restaurant</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="hero">
+
+        <div class="hero-overlay">
+
+            <nav class="navbar">
+
+                <div class="logo">
+                    <span>LUNA</span>
+                    <small>BITES</small>
+                </div>
+
+                <button class="cart-button" id="cartButton">
+                    🛒
+                    <span id="cartCount">0</span>
+                </button>
+
+            </nav>
+
+            <div class="hero-content">
+
+                <p class="eyebrow">LOUNGE • RESTAURANT • BAR</p>
+
+                <h1>Luna Bites</h1>
+
+                <p>
+                    An elegant dining experience crafted for unforgettable
+                    moments.
+                </p>
+
+                <a href="#menu" class="hero-button">
+                    Explore Our Menu
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MENU INTRO ================= -->
+
+    <section class="menu-intro" id="menu">
+
+        <p class="section-label">OUR MENU</p>
+
+        <h2>Good Food.<br>Beautiful Moments.</h2>
+
+        <p>
+            Explore our selection of carefully prepared dishes,
+            refreshing drinks and signature cocktails.
+        </p>
+
+    </section>
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <section class="menu-controls">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search our menu..."
+            >
+
+            <span>⌕</span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CATEGORIES ================= -->
+
+    <div class="category-wrapper">
+
+        <div class="categories" id="categories">
+
+            <div class="categories" id="categories">
+
+    <button class="category active" data-category="All">
+        All
+    </button>
+
+    <button class="category" data-category="Rice">
+        Rice
+    </button>
+
+    <button class="category" data-category="Proteins">
+        Proteins
+    </button>
+
+    <button class="category" data-category="Drinks">
+        Drinks
+    </button>
+
+    <button class="category" data-category="Cocktails">
+        Cocktails
+    </button>
+
+    <button class="category" data-category="Swallows">
+        Swallows
+    </button>
+
+    <button class="category" data-category="Desserts">
+        Desserts
+    </button>
+
+</div>
+        </div>
+
+    </div>
+
+
+    <!-- ================= MENU ================= -->
+
+    <main class="menu-container">
+
+        <div class="menu-grid" id="menuGrid">
+
+            <!-- JavaScript will generate the menu items here -->
+
+        </div>
+
+        <div class="no-results" id="noResults">
+
+            <div>🍽️</div>
+
+            <h3>No dishes found</h3>
+
+            <p>
+                Try searching for something else.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= CART SIDEBAR ================= -->
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <aside class="cart" id="cart">
+
+        <div class="cart-header">
+
+            <div>
+                <p class="section-label">YOUR ORDER</p>
+                <h2>Your Cart</h2>
+            </div>
+
+            <button id="closeCart" class="close-cart">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="cart-items" id="cartItems">
+
+            <div class="empty-cart">
+
+                <div class="empty-cart-icon">
+                    🛒
+                </div>
+
+                <h3>Your cart is empty</h3>
+
+                <p>
+                    Add something delicious from our menu.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="cart-footer">
+
+    <div class="cart-total">
+
+        <span>Total</span>
+
+        <strong id="cartTotal">
+            ₦0
+        </strong>
+
+    </div>
+
+
+    <div class="customer-form">
+
+        <p class="form-title">
+            ORDER DETAILS
+        </p>
+
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Your name"
+        >
+
+
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="Phone number"
+        >
+
+
+        <select id="orderType">
+
+            <option value="">
+                Select order type
+            </option>
+
+            <option value="Pickup">
+                Pickup
+            </option>
+
+            <option value="Delivery">
+                Delivery
+            </option>
+
+        </select>
+
+
+        <input
+            type="text"
+            id="deliveryAddress"
+            placeholder="Delivery address"
+            style="display: none;"
+        >
+
+    </div>
+
+
+    <button
+        class="whatsapp-button"
+        id="whatsappButton"
+    >
+        Order on WhatsApp
+    </button>
+
+</div>
+
+    </aside>
+
+    <!-- ================= RESTAURANT INFO ================= -->
+
+<section class="restaurant-info">
+
+    <div class="info-header">
+
+        <p class="section-label">VISIT LUNA BITES</p>
+
+        <h2>Good Food.<br>Good Energy.</h2>
+
+        <p>
+            Come in, settle down and enjoy an evening of
+            beautiful food, refreshing drinks and unforgettable moments.
+        </p>
+
+    </div>
+
+
+    <div class="info-grid">
+
+        <div class="info-card">
+
+            <span class="info-icon">⌖</span>
+
+            <h3>Location</h3>
+
+            <p>
+                24 Moonlight Avenue<br>
+                Port Harcourt, Nigeria
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="info-icon">◷</span>
+
+            <h3>Opening Hours</h3>
+
+            <p>
+                Monday – Sunday<br>
+                12:00 PM – 11:00 PM
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="info-icon">✆</span>
+
+            <h3>Reservations</h3>
+
+            <p>
+                For reservations and enquiries,
+                contact us on WhatsApp.
+            </p>
+
+           <a
+             href="https://wa.me/2349126346863?text=Hello%20Luna%20Bites%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+             target="_blank"
+             rel="noopener noreferrer"
+             class="info-link"
+             >
+             Contact Us
+         </a> 
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            LUNA BITES
+        </div>
+
+        <p>
+            Lounge • Restaurant • Bar
+        </p>
+
+        <p class="copyright">
+            © 2026 Luna Bites. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
