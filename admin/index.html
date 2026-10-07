@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Luna Bites | Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+    <!-- ================= LOGIN ================= -->
+
+    <section class="login-page" id="loginPage">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                <span>LUNA</span>
+                <small>BITES</small>
+            </div>
+
+            <p class="login-label">ADMIN ACCESS</p>
+
+            <h1>Welcome back.</h1>
+
+            <p class="login-description">
+                Sign in to manage your menu.
+            </p>
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+                <button type="submit" class="login-button">
+                    Sign In
+                </button>
+
+                <p class="login-error" id="loginError"></p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DASHBOARD ================= -->
+
+    <section class="dashboard" id="dashboard">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <span>LUNA</span>
+                <small>BITES</small>
+
+            </div>
+
+            <p class="sidebar-label">
+                ADMIN
+            </p>
+
+            <nav>
+
+                <a href="#" class="nav-link active">
+                    Menu
+                </a>
+
+                <a href="../index.html" target="_blank" class="nav-link">
+                    View Website
+                </a>
+
+            </nav>
+
+            <button id="logoutButton" class="logout-button">
+                Logout
+            </button>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="dashboard-main">
+
+            <header class="dashboard-header">
+
+                <div>
+
+                    <p class="section-label">
+                        LUNA BITES
+                    </p>
+
+                    <h1>Menu Management</h1>
+
+                    <p>
+                        Manage your dishes, prices and availability.
+                    </p>
+
+                </div>
+
+                <button id="addItemButton" class="add-item-button">
+                    + Add Dish
+                </button>
+
+            </header>
+
+
+            <!-- STATS -->
+
+            <section class="stats">
+
+                <div class="stat-card">
+
+                    <span>Total Dishes</span>
+
+                    <strong id="totalItems">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Available</span>
+
+                    <strong id="availableItems">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <span>Unavailable</span>
+
+                    <strong id="unavailableItems">
+                        0
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- MENU ITEMS -->
+
+            <section class="menu-management">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="section-label">
+                            MENU ITEMS
+                        </p>
+
+                        <h2>Your Menu</h2>
+
+                    </div>
+
+                    <input
+                        type="text"
+                        id="adminSearch"
+                        placeholder="Search dishes..."
+                    >
+
+                </div>
+
+
+                <div class="menu-table-wrapper">
+
+                    <table class="menu-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Dish</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="menuTableBody">
+
+                            <!-- JavaScript will insert dishes here -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p class="empty-message" id="emptyMessage">
+                    No menu items found.
+                </p>
+
+            </section>
+
+        </main>
+
+    </section>
+
+
+    <!-- ================= EDIT MODAL ================= -->
+
+    <div class="modal-overlay" id="modalOverlay">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <p class="section-label">
+                        MENU ITEM
+                    </p>
+
+                    <h2 id="modalTitle">
+                        Add Dish
+                    </h2>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="closeModal"
+                    class="close-modal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="menuForm">
+
+                <input type="hidden" id="itemId">
+
+
+                <div class="form-group">
+
+                    <label for="itemName">
+                        Dish Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="itemName"
+                        placeholder="e.g. Special Fried Rice"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="itemCategory">
+                            Category
+                        </label>
+
+                        <select id="itemCategory" required>
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="Rice">
+                                Rice
+                            </option>
+
+                            <option value="Proteins">
+                                Proteins
+                            </option>
+
+                            <option value="Drinks">
+                                Drinks
+                            </option>
+
+                            <option value="Cocktails">
+                                Cocktails
+                            </option>
+
+                            <option value="Swallows">
+                                Swallows
+                            </option>
+
+                            <option value="Desserts">
+                                Desserts
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="itemPrice">
+                            Price (₦)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="itemPrice"
+                            min="0"
+                            placeholder="8500"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+               <div class="form-group">
+
+                 <label for="itemImage">
+                   Dish Image
+                 </label>
+
+              <input
+                type="file"
+                id="itemImage"
+                accept="image/*"
+    >
+
+             </div>
+
+
+                <div class="form-group">
+
+                    <label for="itemDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="itemDescription"
+                        rows="4"
+                        placeholder="Describe the dish..."
+                    ></textarea>
+
+                </div>
+
+
+                <label class="availability-toggle">
+
+                    <input
+                        type="checkbox"
+                        id="itemAvailable"
+                        checked
+                    >
+
+                    <span>
+                        Item is available
+                    </span>
+
+                </label>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        id="cancelButton"
+                        class="cancel-button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+                        Save Dish
+                    </button>
+
+                </div>
+
+                <p class="form-message" id="formMessage"></p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script type="module" src="admin.js"></script>
+
+</body>
+
+</html>

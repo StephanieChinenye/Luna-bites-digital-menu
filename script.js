@@ -1,221 +1,49 @@
-/* =====================================================
-   LUNA BITES
-   DIGITAL MENU JAVASCRIPT
+   /*DIGITAL MENU JAVASCRIPT
 ===================================================== */
 
 
 /* ================= MENU DATA ================= */
 
-const menuItems = [
 
-    {
-        id: 1,
-        name: "Luna Special Fried Rice",
-        category: "Rice",
-        price: 8500,
-        image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=80",
-        description: "Fragrant fried rice prepared with fresh vegetables and our signature seasoning."
-    },
 
-    {
-        id: 2,
-        name: "Native Jellof Rice",
-        category: "Rice",
-        price: 6500,
-        image: "images/native jellof.jpg",
-        description: "A classic favourite served with fresh vegetables and your choice of protein."
-    },
+const SUPABASE_URL = "https://jgdavbvadfhixfiqmprs.supabase.co";
 
-    {
-        id: 3,
-        name: "Fried Rice",
-        category: "Rice",
-        price: 9000,
-        image: "images/fried rice.jpg",
-        description: "A delicious Chinese-inspired rice dish packed with flavour and fresh ingredients."
-    },
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_BrDRiXHB85y9g9wgIfrr-A_TBkI0Ba4";
 
-    {
-        id: 4,
-        name: "White Rice",
-        category: "Rice",
-        price: 2000,
-        image: "images/white rice.webp",
-        description: "Rich and aromatic native-style rice prepared with carefully selected ingredients."
-    },
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
-    {
-        id: 5,
-        name: "Catfish Barbecue",
-        category: "Proteins",
-        price: 18000,
-        image: "images/catfish barbecue.jpg",
-        description: "Fresh catfish grilled to perfection and finished with our signature barbecue glaze."
-    },
+let menuItems = [];
 
-    {
-        id: 6,
-        name: "Grilled Goat Meat",
-        category: "Proteins",
-        price: 4500,
-        image:"images/grilled goat meat.jfif" ,
-        description: "Tender goat meat marinated with aromatic herbs and grilled until perfectly juicy."
-    },
+async function loadMenuItems() {
 
-    {
-        id: 7,
-        name: "Peppered Chicken",
-        category: "Proteins",
-        price: 5000,
-        image: "images/pepper chicken.webp",
-        description: "Tender chicken tossed in a rich and spicy pepper sauce."
-    },
+    const { data, error } = await supabaseClient
+    .from("menu_items")
+        .select("*")
+        .eq("available", true)
+        .order("id", { ascending: true });
+        console.log("SUPABASE DATA:", data);
+        console.log("SUPABASE ERROR:", error);
 
-    {
-        id: 8,
-        name: "Peppered Turkey",
-        category: "Proteins",
-        price: 5000,
-        image: "images/pepper turkey.jpg",
-        description: "Tender turkey tossed in a rich and spicy pepper sauce."
-    },
-
-    {
-        id: 9,
-        name: "Catfish Pepper Soup",
-        category: "Proteins",
-        price: 10000,
-        image: "Catfish-Peppersoup.jpeg",
-        description: "Spicy catfish soup infused with aromatic herbs and spices."
-    },
-
-    {
-        id: 10,
-        name: "Chapman",
-        category: "Drinks",
-        price: 2500,
-        image: "images/chapman.jpeg",
-        description: "A refreshing Nigerian-style cocktail-inspired soft drink."
-    },
-
-    {
-        id: 11,
-        name: "Fresh Mango Juice",
-        category: "Drinks",
-        price: 3000,
-        image: "images/mango-juice.jpg",
-        description: "Freshly prepared mango fruit juice bursting with natural flavour."
-    },
-
-    {
-        id: 12,
-        name: "Budweiser",
-        category: "Drinks",
-        price: 6500,
-        image: "images/budweiser.png",
-        description: "A classic beerbwith a crisp and refreshing taste, perfect for any occasion."
-    },
-
-    {
-        id: 13,
-        name: "Heineken",
-        category: "Drinks",
-        price: 3500,
-        image: "images/heineken.jpg",
-        description: "A classic beer with a crisp and refreshing taste, perfect for any occasion."
-    },
-
-    {
-        id: 14,
-        name: "Black Bullet",
-        category: "Drinks",
-        price: 2500,
-        image: "images/black bullet.jfif",
-        description: " A smooth bold flavor profile"
-    },
-
-    {
-        id: 15,
-        name: "Jack Williams",
-        category: "Drinks",
-        price: 8000,
-        image: "images/jack williams.jfif",
-        description: " super premium blend of whiskey."
-    },
-
-   {
-        id: 16,
-        name: "Four Cousins",
-        category: "Drinks",
-        price: 9000,
-        image: "images/four cousins.webp",
-        description: "A smooth and rich blend of whiskey with a hint of sweetness."
-    },
-
-    {
-        id: 17,
-        name: "Tequila Sunrice",
-        category: "Cocktails",
-        price: 7500,
-        image: "images/Tequila sunrise.jpg",
-        description: "A vibrant signature cocktail created for unforgettable evenings."
-    },
-
-    {
-        id: 18,
-        name: "Pink Cocktail",
-        category: "Cocktails",
-        price: 7500,
-        image: "images/upscale cocktails.jpg",
-        description: "A vibrant signature cocktail created for unforgettable evenings."
-    },
-
-    {
-        id: 19,
-        name: "Classic Mojito",
-        category: "Cocktails",
-        price: 7000,
-        image: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=900&q=80",
-        description: "Refreshing mint, lime and sparkling flavours combined beautifully."
-    },
-
-    {
-        id: 20,
-        name: "Chocolate Cake",
-        category: "Desserts",
-        price: 4500,
-        image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80",
-        description: "Rich chocolate cake served with a smooth and decadent finish."
-    },
-
-    {
-        id: 21,
-        name: "Vanilla Ice Cream",
-        category: "Desserts",
-        price: 3000,
-        image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&w=900&q=80",
-        description: "Creamy vanilla ice cream served chilled and delicious."
-    },
-
-    {
-        id: 22,
-        name: "Afang Soup",
-        category: "Swallows",
-        price: 4000,
-        image: "images/afang soup.jpeg",
-        description: "A traditional Nigerian soup made with afang leaves and your choice of protein."
-    },
-
-    {
-        id: 23,
-        name: "Egusi Soup",
-        category: "Swallows",
-        price: 2500,
-        image: "images/egusi soup.webp",
-        description: "Traditional Nigerian egusi soup served with your choice of protein."
+    if (error) {
+        console.error("Error loading menu:", error);
+        return;
     }
 
-];
+    menuItems = data.map(item => ({
+        id: item.id,
+        name: item.name,
+        category: item.category,
+        price: Number(item.price),
+        image: item.image,
+        description: item.description
+    }));
+
+    displayMenu(menuItems);
+}
 
 
 /* ================= CART ================= */
@@ -949,6 +777,5 @@ function sendWhatsAppOrder() {
 
 /* ================= INITIAL LOAD ================= */
 
-displayMenu(menuItems);
-
+loadMenuItems();
 updateCart();
